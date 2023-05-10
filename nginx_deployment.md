@@ -15,7 +15,7 @@ Pre-requisties (for Windows):
 
 2. Initialise the folder for Vagrant using the following command:
 
-    ```bash
+    ```console
     $ vagrant init
     ```
 
@@ -44,7 +44,7 @@ Pre-requisties (for Windows):
 
 6. Now, moving back to the terminal we can start the VM using the following command:
 
-    ```bash
+    ```console
     $ vagrant up
     ```
 
@@ -54,7 +54,7 @@ Pre-requisties (for Windows):
 
 7. To log in to the VM and use the VM's Linux terminal, enter the following command:
 
-    ```bash
+    ```console
     $ vagrant ssh
     ```
 
@@ -64,7 +64,7 @@ Pre-requisties (for Windows):
 
 1. Firstly, use the following Linux commands to fetch updates for any packages that can be installed (`update`) and install such updates (`upgrade`).
 
-    ```bash
+    ```console
     $ sudo apt-get update
     $ sudo apt-get upgrade
     ```
@@ -73,13 +73,13 @@ Pre-requisties (for Windows):
 
 2. Next, install nginx which will be the software used to run the web server, using the command below:
 
-    ```bash
+    ```console
     $ sudo apt-get install nginx
     ```
 
 3. To start the nginx web server, we can use the following `start` command and to check the status of the server we can use the `status` command, as follows:
 
-    ```bash
+    ```console
     $ sudo systemctl start nginx
     $ sudo systemctl status nginx
     ```
@@ -88,7 +88,7 @@ Pre-requisties (for Windows):
 
 4. To log out of the VM's Linux terminal, you can use the following command:
 
-    ```bash
+    ```console
     $ exit
     ```
 
@@ -100,13 +100,13 @@ Pre-requisties (for Windows):
 
 - If you have made changes to a 'Vagrantfile' and want to reload the VM to display these changes you can run the following vagrant command:
 
-    ```bash
+    ```console
     $ vagrant reload
     ```
 
 - If you have a VM already created by Vagrant, you can remove it using the following command:
 
-    ```bash
+    ```console
     $ vagrant destroy
     ```
     
@@ -116,75 +116,75 @@ The following list is a glossary of useful Linux commands and information on fil
 
 - To print the working directory:
 
-    ```bash
+    ```console
     $ pwd
     ```
 
 - To list all visible files in the current working directory (use the `-l` flag to show more detail such as permissions and the `-a` flag to show hidden files e.g. `ls -al` will show detail of all visible and hidden files):
 
-    ```bash
+    ```console
     $ ls
     ```
 
-  Note: you can use a wildcard (`*`) to filter files e.g. `ls order*` will show files containing the word 'order'.
+  > **Note:** you can use a wildcard (`*`) to filter files e.g. `ls order*` will show files containing the word 'order'.
 
 - To make a new file (add a full-stop/period at the start of the filename to make it hidden e.g. `.hidden-file`):
 
-    ```bash
+    ```console
     $ touch <file-name>
     ```
 
 - To open a file:
 
-    ```bash
+    ```console
     $ file <file-name>
     ```
 
 - To move a file:
 
-    ```bash
+    ```console
     $ mv <file-name> <destination-name>
     ```
 
 - To display the contents of a file:
 
-    ```bash
+    ```console
     $ cat <file-name>
     ```
 
 - To write simple text to a file:
 
-    ```bash
+    ```console
     $ echo "text" >> <file-name>
     ```
 
 - To write more complex text to a file using the Nano text editor (it will also create a file and open it if you have not previously created a file):
 
-    ```bash
+    ```console
     $ sudo nano <file-name>
     ```
 
 - To make a new directory (add a full-stop/period at the start of the directory name to make it hidden e.g. `.hidden-folder`):
 
-    ```bash
+    ```console
     $ mkdir <directory-name>
     ```
 
 - To remove a file (use the `-f` flag to force remove a file regardless of file protection e.g. `rm -f protected-file`)
 
-    ```bash
+    ```console
     $ rm <file-name>
     ```
 
 - To remove an empty directory:
 
-    ```bash
+    ```console
     $ rm -d <file-name>
     ```
 
 - To remove a non-empty directory:
 
-    ```bash
+    ```console
     $ rm -r <file-name>
     ```
 
@@ -204,7 +204,7 @@ When performing an `ls -l` command, the permissions are shown on the left. The f
 
 - Example:
 
-```bash
+```console
 -rw-r--r--  # file, read only for everyone and write for permission for owner
 drwxrwxr-x  # directory, read and execute permissions for everyone and write for group and owner
 ```
@@ -213,11 +213,11 @@ drwxrwxr-x  # directory, read and execute permissions for everyone and write for
 
 - To change the permissions of a file, use the following longhand command:
 
-    ```bash
+    ```console
     $ chmod <access-group>+<permissions> <file-name>
     ```
 
-    > Where access-group is a character representing the type of user (owner, group or everyone else) and permissions are the standard permissions written out e.g. `rwx` for read, write and execute
+    > **Note:** access-group is a character representing the type of user (owner, group or everyone else) and permissions are the standard permissions written out e.g. `rwx` for read, write and execute
 
     **Longhand Permissions Character Codes:**
 
@@ -231,7 +231,7 @@ drwxrwxr-x  # directory, read and execute permissions for everyone and write for
 
 - Example to give everyone full permissions to a file:
 
-    ```bash
+    ```console
     $ chmod a+rwx <file-name>
     ```
 
@@ -239,11 +239,11 @@ drwxrwxr-x  # directory, read and execute permissions for everyone and write for
 
 - You can also use a shorthand command to change permissions:
 
-    ```bash
+    ```console
     $ chmod <xyz> <file-name>
     ```
 
-    > Where x, y and z have digits between 0 and 7 to control the owner, group and everyone else's permissions respectively
+    > **Note:** x, y and z have digits between 0 and 7 to control the owner, group and everyone else's permissions respectively
 
     **Shorthand Permissions Number Codes:**
 
@@ -265,6 +265,6 @@ drwxrwxr-x  # directory, read and execute permissions for everyone and write for
 
 - Example to give everyone full permissions to a file:
 
-    ```bash
+    ```console
     $ chmod 777 <file-name>
     ```
