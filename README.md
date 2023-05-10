@@ -50,7 +50,7 @@ Pre-requisties (for Windows):
 
     If you open VirtualBox, you should now see the VM running, it should be titled the same as the folder you initialised it in.
 
-    ![Virtual Box](virtualbox.png)
+    ![Virtual Box](images/virtualbox.png)
 
 7. To log in to the VM and use the VM's Linux terminal, enter the following command:
 
@@ -94,7 +94,7 @@ Pre-requisties (for Windows):
 
 5. Congratulations, you have successfully deployed your first web server. Enter the IP address '192.168.10.100' in a browser address bar to view the following nginx welcome page.
 
-    ![nginx web server](nginx.png)
+    ![nginx web server](images/nginx.png)
 
 ## Additional Commands
 
