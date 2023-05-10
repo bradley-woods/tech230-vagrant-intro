@@ -86,8 +86,26 @@ Pre-requisties (for Windows):
 
     > **Note:** if your command line disappears at this step, it may be because a text editor is displaying the status information, press 'q' to exit this and return to the command line.
 
-4. Congratulations, you have successfully deployed your first web server. Enter the IP address '192.168.10.100' in a browser address bar to view the nginx server page.
+4. To log out of the VM's Linux terminal, you can use the following command:
 
-## Additional
+    ```bash
+    $ exit
+    ```
 
-If you have a Vagrant VM already created, you can use `vagrant destroy` to remove the VM.
+5. Congratulations, you have successfully deployed your first web server. Enter the IP address '192.168.10.100' in a browser address bar to view the following nginx welcome page.
+
+    ![nginx web server](nginx.png)
+
+## Additional Commands
+
+- If you have made changes to a 'Vagrantfile' and want to reload the VM to display these changes you can run the following vagrant command:
+
+    ```bash
+    $ vagrant reload
+    ```
+
+- If you have a VM already created by Vagrant, you can remove it using the following command:
+
+    ```bash
+    $ vagrant destroy
+    ```
