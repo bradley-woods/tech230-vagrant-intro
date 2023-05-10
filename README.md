@@ -96,7 +96,7 @@ Pre-requisties (for Windows):
 
     ![nginx web server](images/nginx.png)
 
-## Additional Commands
+## Additional Vagrant Commands
 
 - If you have made changes to a 'Vagrantfile' and want to reload the VM to display these changes you can run the following vagrant command:
 
@@ -108,4 +108,163 @@ Pre-requisties (for Windows):
 
     ```bash
     $ vagrant destroy
+    ```
+    
+## Glossary of Linux Commands
+
+The following list is a glossary of useful Linux commands and information on file permissions that can be used when operating your Linux VM.
+
+- To print the working directory:
+
+    ```bash
+    $ pwd
+    ```
+
+- To list all visible files in the current working directory (use the `-l` flag to show more detail such as permissions and the `-a` flag to show hidden files e.g. `ls -al` will show detail of all visible and hidden files):
+
+    ```bash
+    $ ls
+    ```
+
+  Note: you can use a wildcard (`*`) to filter files e.g. `ls order*` will show files containing the word 'order'.
+
+- To make a new file (add a full-stop/period at the start of the filename to make it hidden e.g. `.hidden-file`):
+
+    ```bash
+    $ touch <file-name>
+    ```
+
+- To open a file:
+
+    ```bash
+    $ file <file-name>
+    ```
+
+- To move a file:
+
+    ```bash
+    $ mv <file-name> <destination-name>
+    ```
+
+- To display the contents of a file:
+
+    ```bash
+    $ cat <file-name>
+    ```
+
+- To write simple text to a file:
+
+    ```bash
+    $ echo "text" >> <file-name>
+    ```
+
+- To write more complex text to a file using the Nano text editor (it will also create a file and open it if you have not previously created a file):
+
+    ```bash
+    $ sudo nano <file-name>
+    ```
+
+- To make a new directory (add a full-stop/period at the start of the directory name to make it hidden e.g. `.hidden-folder`):
+
+    ```bash
+    $ mkdir <directory-name>
+    ```
+
+- To remove a file (use the `-f` flag to force remove a file regardless of file protection e.g. `rm -f protected-file`)
+
+    ```bash
+    $ rm <file-name>
+    ```
+
+- To remove an empty directory:
+
+    ```bash
+    $ rm -d <file-name>
+    ```
+
+- To remove a non-empty directory:
+
+    ```bash
+    $ rm -r <file-name>
+    ```
+
+## Permissions
+
+When performing an `ls -l` command, the permissions are shown on the left. The first character represents if the item is a file (`-`) or a directory (`d`) and the next 9 characters represent the permissions, where the first 3 characters are for the owner, the following 3 are for the group and the final 3 are for everyone else, as shown in the image below:
+
+![File permissions](images/file_permissions.png)
+
+- Where:
+
+  - r = Read only permissions
+
+  - w = Write permissions
+
+  - x = Execute/run permissions
+
+- Example:
+
+```bash
+-rw-r--r--  # file, read only for everyone and write for permission for owner
+drwxrwxr-x  # directory, read and execute permissions for everyone and write for group and owner
+```
+
+### Change Permissions - Longhand
+
+- To change the permissions of a file, use the following longhand command:
+
+    ```bash
+    $ chmod <access-group>+<permissions> <file-name>
+    ```
+
+    > Where access-group is a character representing the type of user (owner, group or everyone else) and permissions are the standard permissions written out e.g. `rwx` for read, write and execute
+
+    **Longhand Permissions Character Codes:**
+
+  - u = User/owner
+
+  - g = Group
+
+  - o = Others
+
+  - a = All (or leave it blank)
+
+- Example to give everyone full permissions to a file:
+
+    ```bash
+    $ chmod a+rwx <file-name>
+    ```
+
+### Change Permissions - Shorthand
+
+- You can also use a shorthand command to change permissions:
+
+    ```bash
+    $ chmod <xyz> <file-name>
+    ```
+
+    > Where x, y and z have digits between 0 and 7 to control the owner, group and everyone else's permissions respectively
+
+    **Shorthand Permissions Number Codes:**
+
+  - 0 - No permission
+
+  - 1 - Execute permission
+
+  - 2 - Write permission
+
+  - 3 - Write and execute permissions
+
+  - 4 - Read permission
+
+  - 5 - Read and execute permissions
+
+  - 6 - Read and write permissions
+
+  - 7 - Read, write, and execute permissions
+
+- Example to give everyone full permissions to a file:
+
+    ```bash
+    $ chmod 777 <file-name>
     ```
