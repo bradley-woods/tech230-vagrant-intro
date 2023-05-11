@@ -119,12 +119,12 @@ We will now automate all of the previous steps so when a `vagrant up` command is
     ```ruby
     Vagrant.configure("2") do |config|
     
-    # configure the VM settings
-    config.vm.box = "ubuntu/xenial64"
-    config.vm.network "private_network", ip:"192.168.10.100"
+      # configure the VM settings
+      config.vm.box = "ubuntu/xenial64"
+      config.vm.network "private_network", ip:"192.168.10.100"
 
-    # provision the VM to have nginx web server
-    config.vm.provision "shell", path: "provision.sh"
+      # provision the VM to have nginx web server
+      config.vm.provision "shell", path: "provision.sh"
 
     end
     ```
