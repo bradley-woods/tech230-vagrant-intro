@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get upgrade -y
 
 # Install nginx web server
-sudo apt-get install -y nginx
+sudo apt-get install nginx -y
 
 # Start nginx web server 
 sudo systemctl start nginx
