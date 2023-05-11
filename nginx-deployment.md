@@ -96,20 +96,6 @@ Pre-requisties (for Windows):
 
     ![nginx web server](images/nginx.png)
 
-## Additional Vagrant Commands
-
-- If you have made changes to a 'Vagrantfile' and want to reload the VM to display these changes you can run the following vagrant command:
-
-    ```console
-    $ vagrant reload
-    ```
-
-- If you have a VM already created by Vagrant, you can remove it using the following command:
-
-    ```console
-    $ vagrant destroy
-    ```
-
 ## Automating the Deployment
 
 We will now automate all of the previous steps so when a `vagrant up` command is run, the VM will be provisioned with the nginx webserver and it will be automatically running.
@@ -147,4 +133,24 @@ We will now automate all of the previous steps so when a `vagrant up` command is
     sudo systemctl status nginx
     ```
 
-3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command or alternatively if we enter the IP address '192.168.10.100' in our browser, the nginx welcome page should be displayed.
+    > **Note:** The line at the top starting with a shebang (`#!`) tells the operating system which intepreter to use when executing the remainder of the script. In this case, it is 'bash'.
+
+3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command as shown below.
+
+    ![Terminal showing running server](images/server_running.png)
+
+    Alternatively, if we enter the IP address '192.168.10.100' in our browser, the nginx welcome page should be displayed.
+
+## Additional Vagrant Commands
+
+- If you have made changes to a 'Vagrantfile' and want to reload the VM to display these changes you can run the following vagrant command:
+
+    ```console
+    $ vagrant reload
+    ```
+
+- If you have a VM already created by Vagrant, you can remove it using the following command:
+
+    ```console
+    $ vagrant destroy
+    ```
