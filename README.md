@@ -1,8 +1,12 @@
 # Nginx Web Server Deployment using Vagrant
 
+Vagrant is a tool for building and provisioning virtual machine environments. It makes the workflow easy to use and focuses on automation, lowering setup time and increasing overall productivity.
+
+![vagrant](images/vagrant.png)
+
 This guide will explain how to create an Ubuntu Virtual Machine (VM) using Vagrant and VirtualBox Manager, and use it to run an nginx web server.
 
-Pre-requisties (for Windows):
+Pre-requisites (for Windows):
 
 - Install VirtualBox and run as **administrator**: [Oracle VirtualBox 6.1](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
 - Install Vagrant (AMD64 recommended): [HashiCorp Vagrant](https://developer.hashicorp.com/vagrant/downloads?product_intent=vagrant)
@@ -133,7 +137,7 @@ We will now automate all of the previous steps so when a `vagrant up` command is
     sudo systemctl status nginx
     ```
 
-    > **Note:** The line at the top starting with a shebang (`#!`) tells the operating system which intepreter to use when executing the remainder of the script. In this case, it is 'bash'.
+    > **Note:** The line at the top starting with a shebang (`#!`) tells the operating system which interpreter to use when executing the remainder of the script. In this case, it is 'bash'.
 
 3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command as shown below.
 
@@ -149,8 +153,20 @@ We will now automate all of the previous steps so when a `vagrant up` command is
     $ vagrant reload
     ```
 
+- To stop a VM running, use the following command:
+
+    ```console
+    $ vagrant halt
+    ```
+
 - If you have a VM already created by Vagrant, you can remove it using the following command:
 
     ```console
     $ vagrant destroy
+    ```
+
+- To check the status of your Vagrant virtual machines:
+
+    ```console
+    $ vagrant status
     ```
