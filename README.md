@@ -109,162 +109,42 @@ Pre-requisties (for Windows):
     ```console
     $ vagrant destroy
     ```
+
+## Automating the Deployment
+
+We will now automate all of the previous steps so when a `vagrant up` command is run, the VM will be provisioned with the nginx webserver and it will be automatically running.
+
+1. Firstly, add a new line to your 'Vagrantfile' and call the `config.vm.provision` method which tells Vagrant to provision it when you create and start the VM. We want to provision it using a 'shell' script, called 'provision.sh' in this case, as shown below:
+
+    ```ruby
+    Vagrant.configure("2") do |config|
     
-## Glossary of Linux Commands
+    # configure the VM settings
+    config.vm.box = "ubuntu/xenial64"
+    config.vm.network "private_network", ip:"192.168.10.100"
 
-The following list is a glossary of useful Linux commands and information on file permissions that can be used when operating your Linux VM.
+    # provision the VM to have nginx web server
+    config.vm.provision "shell", path: "provision.sh"
 
-- To print the working directory:
-
-    ```console
-    $ pwd
+    end
     ```
 
-- To list all visible files in the current working directory (use the `-l` flag to show more detail such as permissions and the `-a` flag to show hidden files e.g. `ls -al` will show detail of all visible and hidden files):
+2. Now, we can write the shell script 'provision.sh' where we can enter all of the commands we want to be run when Vagrant starts the VM, these are all of the commands we used previously in our manual setup. The shell file should look similar to the below:
 
-    ```console
-    $ ls
+    ```bash
+    #!/bin/bash
+
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+
+    # Install nginx web server
+    sudo apt-get install nginx -y
+
+    # Start nginx web server 
+    sudo systemctl start nginx
+
+    # Display nginx web server status to check it is running
+    sudo systemctl status nginx
     ```
 
-  > **Note:** you can use a wildcard (`*`) to filter files e.g. `ls order*` will show files containing the word 'order'.
-
-- To make a new file (add a full-stop/period at the start of the filename to make it hidden e.g. `.hidden-file`):
-
-    ```console
-    $ touch <file-name>
-    ```
-
-- To open a file:
-
-    ```console
-    $ file <file-name>
-    ```
-
-- To move a file:
-
-    ```console
-    $ mv <file-name> <destination-name>
-    ```
-
-- To display the contents of a file:
-
-    ```console
-    $ cat <file-name>
-    ```
-
-- To write simple text to a file:
-
-    ```console
-    $ echo "text" >> <file-name>
-    ```
-
-- To write more complex text to a file using the Nano text editor (it will also create a file and open it if you have not previously created a file):
-
-    ```console
-    $ sudo nano <file-name>
-    ```
-
-- To make a new directory (add a full-stop/period at the start of the directory name to make it hidden e.g. `.hidden-folder`):
-
-    ```console
-    $ mkdir <directory-name>
-    ```
-
-- To remove a file (use the `-f` flag to force remove a file regardless of file protection e.g. `rm -f protected-file`)
-
-    ```console
-    $ rm <file-name>
-    ```
-
-- To remove an empty directory:
-
-    ```console
-    $ rm -d <file-name>
-    ```
-
-- To remove a non-empty directory:
-
-    ```console
-    $ rm -r <file-name>
-    ```
-
-## Permissions
-
-When performing an `ls -l` command, the permissions are shown on the left. The first character represents if the item is a file (`-`) or a directory (`d`) and the next 9 characters represent the permissions, where the first 3 characters are for the owner, the following 3 are for the group and the final 3 are for everyone else, as shown in the image below:
-
-![File permissions](images/file_permissions.png)
-
-- Where:
-
-  - r = Read only permissions
-
-  - w = Write permissions
-
-  - x = Execute/run permissions
-
-- Example:
-
-```console
--rw-r--r--  # file, read only for everyone and write for permission for owner
-drwxrwxr-x  # directory, read and execute permissions for everyone and write for group and owner
-```
-
-### Change Permissions - Longhand
-
-- To change the permissions of a file, use the following longhand command:
-
-    ```console
-    $ chmod <access-group>+<permissions> <file-name>
-    ```
-
-    > **Note:** access-group is a character representing the type of user (owner, group or everyone else) and permissions are the standard permissions written out e.g. `rwx` for read, write and execute
-
-    **Longhand Permissions Character Codes:**
-
-  - u = User/owner
-
-  - g = Group
-
-  - o = Others
-
-  - a = All (or leave it blank)
-
-- Example to give everyone full permissions to a file:
-
-    ```console
-    $ chmod a+rwx <file-name>
-    ```
-
-### Change Permissions - Shorthand
-
-- You can also use a shorthand command to change permissions:
-
-    ```console
-    $ chmod <xyz> <file-name>
-    ```
-
-    > **Note:** x, y and z have digits between 0 and 7 to control the owner, group and everyone else's permissions respectively
-
-    **Shorthand Permissions Number Codes:**
-
-  - 0 - No permission
-
-  - 1 - Execute permission
-
-  - 2 - Write permission
-
-  - 3 - Write and execute permissions
-
-  - 4 - Read permission
-
-  - 5 - Read and execute permissions
-
-  - 6 - Read and write permissions
-
-  - 7 - Read, write, and execute permissions
-
-- Example to give everyone full permissions to a file:
-
-    ```console
-    $ chmod 777 <file-name>
-    ```
+3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command or alternatively if we enter the IP address '192.168.10.100' in our browser, the nginx welcome page should be displayed.
