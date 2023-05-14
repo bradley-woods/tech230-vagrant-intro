@@ -4,7 +4,7 @@ Vagrant is a tool for building and provisioning virtual machine environments. It
 
 ![vagrant](images/vagrant.png)
 
-This guide will explain how to create an Ubuntu Virtual Machine (VM) using Vagrant and VirtualBox Manager, and use it to run an nginx web server.
+This guide will explain how to create an Ubuntu Virtual Machine (VM) using Vagrant and VirtualBox Manager, and use it to run an Nginx web server.
 
 Pre-requisites (for Windows):
 
@@ -35,7 +35,7 @@ Pre-requisites (for Windows):
 
 4. Where it says `base`, enter the VM image type, in this case we are using Ubuntu so enter `ubuntu/xenial64`.
 
-5. Also, we want to specify the IP address of the nginx web-server, so enter a new line under `config.vm.box` and type the following: `config.vm.network "private_network", ip:"192.168.10.100"`. Our 'Vagrantfile' should now look something like the below:
+5. Also, we want to specify the IP address of the Nginx web-server, so enter a new line under `config.vm.box` and type the following: `config.vm.network "private_network", ip:"192.168.10.100"`. Our 'Vagrantfile' should now look something like the below:
 
     ```ruby
     Vagrant.configure("2") do |config|
@@ -62,7 +62,7 @@ Pre-requisites (for Windows):
     $ vagrant ssh
     ```
 
-8. Now we are logged in, the username in the VSCode terminal should change to `vagrant@ubuntu-xenial` meaning you have successfully created and logged in to your new VM's Linux terminal! Now to deploy our first nginx web server...
+8. Now we are logged in, the username in the VSCode terminal should change to `vagrant@ubuntu-xenial` meaning you have successfully created and logged in to your new VM's Linux terminal! Now to deploy our first Nginx web server...
 
 ## Deploying the Nginx Web Server
 
@@ -75,13 +75,13 @@ Pre-requisites (for Windows):
 
     > **Note:** ensure you want to install these updates as it may be dangerous to do so. `-y` can be added to the end of the `upgrade` command to automatically bypass the 'Do you want to continue? [Y/n]' warning. In any case, enter 'y' to move on.
 
-2. Next, install nginx which will be the software used to run the web server, using the command below:
+2. Next, install Nginx which will be the software used to run the web server, using the command below:
 
     ```console
     $ sudo apt-get install nginx
     ```
 
-3. To start the nginx web server, we can use the following `start` command and to check the status of the server we can use the `status` command, as follows:
+3. To start the Nginx web server, we can use the following `start` command and to check the status of the server we can use the `status` command, as follows:
 
     ```console
     $ sudo systemctl start nginx
@@ -96,13 +96,13 @@ Pre-requisites (for Windows):
     $ exit
     ```
 
-5. Congratulations, you have successfully deployed your first web server. Enter the IP address '192.168.10.100' in a browser address bar to view the following nginx welcome page.
+5. Congratulations, you have successfully deployed your first web server. Enter the IP address '192.168.10.100' in a browser address bar to view the following Nginx welcome page.
 
     ![nginx web server](images/nginx.png)
 
 ## Automating the Deployment
 
-We will now automate all of the previous steps so when a `vagrant up` command is run, the VM will be provisioned with the nginx webserver and it will be automatically running.
+We will now automate all of the previous steps so when a `vagrant up` command is run, the VM will be provisioned with the Nginx web server and it will be automatically running.
 
 1. Firstly, add a new line to your 'Vagrantfile' and call the `config.vm.provision` method which tells Vagrant to provision it when you create and start the VM. We want to provision it using a 'shell' script, called 'provision.sh' in this case, as shown below:
 
@@ -139,11 +139,11 @@ We will now automate all of the previous steps so when a `vagrant up` command is
 
     > **Note:** The line at the top starting with a shebang (`#!`) tells the operating system which interpreter to use when executing the remainder of the script. In this case, it is 'bash'.
 
-3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command as shown below.
+3. All we need to do now is run the command `vagrant up` and it should automatically provision our VM with an Nginx web server and start it. We can see the server is running in the terminal due to the `sudo systemctl status nginx` command as shown below.
 
     ![Terminal showing running server](images/server_running.png)
 
-    Alternatively, if we enter the IP address '192.168.10.100' in our browser, the nginx welcome page should be displayed.
+    Alternatively, if we enter the IP address '192.168.10.100' in our browser, the Nginx welcome page should be displayed.
 
 ## Additional Vagrant Commands
 
